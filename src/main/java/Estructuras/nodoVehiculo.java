@@ -3,45 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gestion;
+package Estructuras;
 
-import prograbases1.empresa;
+import prograbases1.vehiculo;
 
 /**
  *
  * @author win8
  */
-public class nodoEmpresa {
+public class nodoVehiculo {
     //Declaracion de variables
-    empresa element;
+    vehiculo element;
 //    lista_historial historial;
-    nodoEmpresa next;
+    nodoVehiculo next;
     
     //Constructores
-    public nodoEmpresa(){
+    public nodoVehiculo(){
     }
-    public nodoEmpresa(empresa element){
+    public nodoVehiculo(vehiculo element){
         this.element = element;
         this.next = null;
     }
-    public nodoEmpresa(empresa element,nodoEmpresa next){
+    public nodoVehiculo(vehiculo element,nodoVehiculo next){
         this.element = element;
         this.next = next;
     }
     //Metodos de la clase
-    public empresa getElement() {
+    public vehiculo getElement() {
         return this.element;
     }
 
-    public void setElement(empresa element) {
+    public void setElement(vehiculo element) {
         this.element = element;
     }
 
-    public nodoEmpresa getNext() {
+    public nodoVehiculo getNext() {
         return this.next;
     }
 
-    public void setNext(nodoEmpresa next) {
+    public void setNext(nodoVehiculo next) {
         this.next = next;
     }
 }

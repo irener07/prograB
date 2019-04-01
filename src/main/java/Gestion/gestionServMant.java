@@ -19,7 +19,7 @@ public class gestionServMant {
     public void ingresarServicio(int copiaIdS, int copiaMonto, Date copiaFechaI, Date copiaFechaF, String copiaDetalle, int copiaIdTS, int copiaPlacas, int copiaCedulaJ){
         try{
             servicioMantenimiento nuevo = new servicioMantenimiento (copiaIdS, copiaMonto, copiaFechaI, copiaFechaF, copiaDetalle, copiaIdTS, copiaPlacas, copiaCedulaJ);
-            PrograBases1.serviciosM.add(nuevo);
+            PrograBases1.serviciosM.create(nuevo);
             
             
         }

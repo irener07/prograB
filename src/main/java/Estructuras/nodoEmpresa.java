@@ -3,44 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gestion;
+package Estructuras;
 
-import prograbases1.servicioMantenimiento;
+import prograbases1.empresa;
 
 /**
  *
  * @author win8
  */
-public class nodoServicio {
-    servicioMantenimiento element;
+public class nodoEmpresa {
+    //Declaracion de variables
+    empresa element;
 //    lista_historial historial;
-    nodoServicio next;
+    nodoEmpresa next;
     
     //Constructores
-    public nodoServicio(){
+    public nodoEmpresa(){
     }
-    public nodoServicio(servicioMantenimiento element){
+    public nodoEmpresa(empresa element){
         this.element = element;
         this.next = null;
     }
-    public nodoServicio(servicioMantenimiento element,nodoServicio next){
+    public nodoEmpresa(empresa element,nodoEmpresa next){
         this.element = element;
         this.next = next;
     }
     //Metodos de la clase
-    public servicioMantenimiento getElement() {
+    public empresa getElement() {
         return this.element;
     }
 
-    public void setElement(servicioMantenimiento element) {
+    public void setElement(empresa element) {
         this.element = element;
     }
 
-    public nodoServicio getNext() {
+    public nodoEmpresa getNext() {
         return this.next;
     }
 
-    public void setNext(nodoServicio next) {
+    public void setNext(nodoEmpresa next) {
         this.next = next;
     }
 }

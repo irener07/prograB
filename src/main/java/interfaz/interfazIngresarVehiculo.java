@@ -4,14 +4,23 @@
  * and open the template in the editor.
  */
 package interfaz;
-import Gestion.nodo;
+import Estructuras.nodo;
+import Gestion.gestionVehiculo;
+import java.awt.Image;
+import java.io.File;
 import java.util.LinkedList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author win8
  */
 public class interfazIngresarVehiculo extends javax.swing.JFrame {
-    
+    static File fotito;
 
     /**
      * Creates new form interfazVehiculo
@@ -36,7 +45,6 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
         costoDía = new javax.swing.JLabel();
         año = new javax.swing.JLabel();
         kilometraje = new javax.swing.JLabel();
-        estado = new javax.swing.JLabel();
         estilo = new javax.swing.JLabel();
         vin = new javax.swing.JLabel();
         puertas = new javax.swing.JLabel();
@@ -50,7 +58,6 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
         entradaCosto = new javax.swing.JTextField();
         entradaAño = new javax.swing.JTextField();
         entradaKilometraje = new javax.swing.JTextField();
-        entradaEstado = new javax.swing.JComboBox<>();
         entradaEstilo = new javax.swing.JComboBox<>();
         entradaVIN = new javax.swing.JTextField();
         entradaPuertas = new javax.swing.JTextField();
@@ -92,10 +99,6 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
         kilometraje.setForeground(new java.awt.Color(255, 255, 255));
         kilometraje.setText("Kilometraje:");
 
-        estado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        estado.setForeground(new java.awt.Color(255, 255, 255));
-        estado.setText("Estado:");
-
         estilo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         estilo.setForeground(new java.awt.Color(255, 255, 255));
         estilo.setText("Estilo:");
@@ -136,11 +139,16 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
         maletas.setForeground(new java.awt.Color(255, 255, 255));
         maletas.setText("Cantidad de Maletas:");
 
-        entradaEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         entradaEstilo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        foto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         cargarFoto.setText("Cargar imagen");
+        cargarFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarFotoActionPerformed(evt);
+            }
+        });
 
         entradaMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -178,7 +186,6 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
                                             .addComponent(costoDía)
                                             .addComponent(año)
                                             .addComponent(kilometraje)
-                                            .addComponent(estado)
                                             .addComponent(estilo))
                                         .addGap(21, 21, 21)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -186,20 +193,19 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
                                             .addComponent(entradaPlaca)
                                             .addComponent(entradaAño)
                                             .addComponent(entradaKilometraje)
-                                            .addComponent(entradaEstado, 0, 122, Short.MAX_VALUE)
-                                            .addComponent(entradaEstilo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(entradaEstilo, 0, 122, Short.MAX_VALUE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(mpg)
+                                        .addGap(86, 86, 86)
+                                        .addComponent(entradaMPG, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(vin)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(entradaVIN, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(puertas)
-                                            .addComponent(mpg))
+                                        .addComponent(puertas)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(entradaMPG, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(entradaPuertas, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(entradaPuertas, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(69, 69, 69)
                                 .addComponent(label1)))
@@ -240,62 +246,61 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(entradaSede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(entradaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(placa)
+                    .addComponent(transmisión)
+                    .addComponent(entradaTransmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(costoDía)
+                    .addComponent(marca)
+                    .addComponent(entradaCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(entradaMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(año)
+                    .addComponent(color)
+                    .addComponent(entradaAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(entradaColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(kilometraje)
+                    .addComponent(capacidad)
+                    .addComponent(entradaKilometraje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(entradaCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(entradaPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(placa)
-                            .addComponent(transmisión)
-                            .addComponent(entradaTransmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(costoDía)
-                            .addComponent(marca)
-                            .addComponent(entradaCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(entradaMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(año)
-                            .addComponent(color)
-                            .addComponent(entradaAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(entradaColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(kilometraje)
-                            .addComponent(capacidad)
-                            .addComponent(entradaKilometraje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(entradaCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(estado)
                             .addComponent(maletas)
                             .addComponent(entradaMaletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(entradaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(entradaEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(estilo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(estilo)
                     .addComponent(Fotolbl)
-                    .addComponent(entradaEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cargarFoto))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(vin)
                             .addComponent(entradaVIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(puertas, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(entradaPuertas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(mpg)
                             .addComponent(entradaMPG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(30, 30, 30)
                         .addComponent(jButton1)
-                        .addContainerGap(14, Short.MAX_VALUE))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -320,11 +325,12 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int copiaPlaca = Integer.parseInt(interfazIngresarVehiculo.entradaPlaca.getText());
+        gestionVehiculo gestion = new gestionVehiculo();
+            int copiaPlaca = Integer.parseInt(interfazIngresarVehiculo.entradaPlaca.getText());
             int copiaCosto = Integer.parseInt(interfazIngresarVehiculo.entradaCosto.getText());
             int copiaAño = Integer.parseInt(interfazIngresarVehiculo.entradaAño.getText());
             int copiaKilometraje = Integer.parseInt(interfazIngresarVehiculo.entradaKilometraje.getText());
-            int copiaEstado = Integer.parseInt(interfazIngresarVehiculo.entradaEstado.getSelectedItem().toString());
+            int copiaEstado = 1;
             int copiaEstilo = Integer.parseInt(interfazIngresarVehiculo.entradaEstilo.getSelectedItem().toString());
             String copiaVIN =interfazIngresarVehiculo.entradaVIN.getText();
             int copiaPuertas = Integer.parseInt(interfazIngresarVehiculo.entradaPuertas.getText());
@@ -335,44 +341,36 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
             int copiaCapacidad = Integer.parseInt(interfazIngresarVehiculo.entradaCapacidad.getText());
             int copiaMaletas = Integer.parseInt(interfazIngresarVehiculo.entradaMaletas.getText());
             int copiaSede = Integer.parseInt(interfazIngresarVehiculo.entradaSede.getSelectedItem().toString());
-            ingresarVehiculo(copiaPlaca, copiaMaletas, copiaAño, copiaPuertas, copiaMPG, copiaCosto, copiaVIN, copiaKilometraje, copiaPuertas, copiaTransmision, foto, copiaColor, copiaMarca, copiaEstado, copiaEstilo, copiaSede);
+            File copiaFoto = fotito;
+            gestion.ingresarVehiculo(copiaPlaca, copiaMaletas, copiaAño, copiaPuertas, copiaMPG, copiaCosto, copiaVIN, copiaKilometraje, copiaPuertas, copiaTransmision, copiaFoto, copiaColor, copiaMarca, copiaEstado, copiaEstilo, copiaSede);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void cargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarFotoActionPerformed
+        // TODO add your handling code here:
+        int resultado;
+        cargarImagen buscador = new cargarImagen();
+        //Filtros
+        FileNameExtensionFilter formato = new FileNameExtensionFilter("Images","jpn","png","gif","bmp");
+        cargarImagen.jFileChooser3.setFileFilter(formato);
+        
+        resultado = cargarImagen.jFileChooser3.showOpenDialog(null);
+        if (JFileChooser.APPROVE_OPTION == resultado){
+            fotito = cargarImagen.jFileChooser3.getSelectedFile();
+            
+            try{
+                ImageIcon ImgIcon = new ImageIcon(fotito.toString());
+                
+                Icon icono = new ImageIcon(ImgIcon.getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_DEFAULT));
+            
+                foto.setIcon(icono);
+            }catch (Exception ex){
+                JOptionPane.showMessageDialog(null, "Error al abrir:  "+ ex);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(interfazIngresarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(interfazIngresarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(interfazIngresarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(interfazIngresarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            
+            
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_cargarFotoActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new interfazIngresarVehiculo().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fotolbl;
@@ -385,7 +383,6 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
     public static javax.swing.JTextField entradaCapacidad;
     public static javax.swing.JComboBox<String> entradaColor;
     public static javax.swing.JTextField entradaCosto;
-    public static javax.swing.JComboBox<String> entradaEstado;
     public static javax.swing.JComboBox<String> entradaEstilo;
     public static javax.swing.JTextField entradaKilometraje;
     public static javax.swing.JTextField entradaMPG;
@@ -396,7 +393,6 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
     private static javax.swing.JComboBox<String> entradaSede;
     public static javax.swing.JComboBox<String> entradaTransmision;
     public static javax.swing.JTextField entradaVIN;
-    private javax.swing.JLabel estado;
     private javax.swing.JLabel estilo;
     public static javax.swing.JLabel foto;
     private javax.swing.JButton jButton1;

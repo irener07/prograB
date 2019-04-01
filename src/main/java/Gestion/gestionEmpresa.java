@@ -18,7 +18,7 @@ public class gestionEmpresa {
     public void ingresarEmpresa(int copiaCJ, String copiaRS, int copiaTelefono, int copiaProvincia, int copiaCanton, int copiaDistrito, String copiaSeñas){
         try{
             empresa nuevo = new empresa(copiaCJ, copiaRS, copiaTelefono, copiaProvincia, copiaCanton, copiaDistrito, copiaSeñas);
-            PrograBases1.empresas.add(nuevo);
+            PrograBases1.empresas.create(nuevo);
             
             
         }

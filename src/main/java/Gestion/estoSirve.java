@@ -163,5 +163,28 @@ JOptionPane.showMessageDialog(null, "Error abriendo la                   imagen 
         String itemSelecionado=(String)this.jListResultados.getSelectedValue();
         this.jTextDireccion.setText(itemSelecionado);
     }
+    //Codigo foto Oscar
     
+    int resultado;
+        Interfaz_foto buscador = new Interfaz_foto();
+        //Filtros
+        FileNameExtensionFilter formato = new FileNameExtensionFilter("Images","jpn","png","gif","bmp");
+        Interfaz_foto.jFileChooser3.setFileFilter(formato);
+        
+        resultado = Interfaz_foto.jFileChooser3.showOpenDialog(null);
+        if (JFileChooser.APPROVE_OPTION == resultado){
+            imagen_cedula = Interfaz_foto.jFileChooser3.getSelectedFile();
+            
+            try{
+                ImageIcon ImgIcon = new ImageIcon(imagen_cedula.toString());
+                
+                Icon icono = new ImageIcon(ImgIcon.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+            
+                imagen.setIcon(icono);
+            }catch (Exception ex){
+                JOptionPane.showMessageDialog(null, "Error al abrir:  "+ ex);
+            }
+            
+            
+        }
  }

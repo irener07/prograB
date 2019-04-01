@@ -37,7 +37,7 @@ public class gestionClientes {
     public void ingresarClientes(int copiaCedula, String copiaNom, String copiaApellido1, String copiaApellido2, String copiaCorreo, int copiaTelef, int copiaIdP, int copiaIdC, int copiaIdD, String copiaSeñas){
         try{
             cliente nuevo = new cliente(copiaCedula, copiaNom, copiaApellido1, copiaApellido2, copiaCorreo, copiaTelef, copiaIdP, copiaIdC, copiaIdD, copiaSeñas);
-            PrograBases1.clientes.add(nuevo);
+            PrograBases1.clientes.create(nuevo);
             
             
         }

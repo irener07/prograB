@@ -2,6 +2,7 @@
 package prograbases1;
 
 import java.awt.Image;
+import java.io.File;
 
 /**
  *
@@ -18,14 +19,14 @@ public class vehiculo {
     public int kilometraje;
     public int cantidadPersonas;
     public int idTransmision;
-    public Image foto;
+    public File foto;
     public int idColor;
     public int idMarca;
     public int isEstado;
     public int idEstilo;
     public int idSede;
 
-    public vehiculo(int placa, int cantidadMaletas, int año, int numeroPuertas, int mpg, int costoDia, String numeroVin, int kilometraje, int cantidadPersonas, int idTransmision, Image foto, int idColor, int idMarca, int isEstado, int idEstilo, int idSede) {
+    public vehiculo(int placa, int cantidadMaletas, int año, int numeroPuertas, int mpg, int costoDia, String numeroVin, int kilometraje, int cantidadPersonas, int idTransmision, File foto, int idColor, int idMarca, int isEstado, int idEstilo, int idSede) {
         this.placa = placa;
         this.cantidadMaletas = cantidadMaletas;
         this.año = año;
@@ -126,11 +127,11 @@ public class vehiculo {
         this.idTransmision = idTransmision;
     }
 
-    public Image getFoto() {
+    public File getFoto() {
         return foto;
     }
 
-    public void setFoto(Image foto) {
+    public void setFoto(File foto) {
         this.foto = foto;
     }
 

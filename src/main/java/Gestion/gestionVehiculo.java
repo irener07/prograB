@@ -14,20 +14,27 @@ import java.awt.Image;
 import java.util.LinkedList;
 import prograbases1.vehiculo;
 import interfaz.PrograBases1;
+import java.awt.HeadlessException;
+import java.io.File;
+import javax.swing.JOptionPane;
 
 
 public class gestionVehiculo {
     
     
-    public void ingresarVehiculo(int copiaPlaca, int copiaMaletas, int copiaAño, int copiaPuertas, int copiaMPG, int copiaCosto, String copiaVIN, int copiaKilometraje, int copiaCantidad, int copiaTransmision, Image foto, int copiaColor, int copiaMarca, int copiaEstado, int copiaEstilo, int copiaSede){
+    public void ingresarVehiculo(int copiaPlaca, int copiaMaletas, int copiaAño, int copiaPuertas, int copiaMPG, int copiaCosto, String copiaVIN, int copiaKilometraje, int copiaCantidad, int copiaTransmision, File foto, int copiaColor, int copiaMarca, int copiaEstado, int copiaEstilo, int copiaSede){
         try{
             
             //Falta imagen 
-            vehiculo nuevo = new vehiculo(int placa, int cantidadMaletas, int año, int numeroPuertas, int mpg, int costoDia, String numeroVin, int kilometraje, int cantidadPersonas, int idTransmision, Image foto, int idColor, int idMarca, int isEstado, int idEstilo, int idSede);
-            nuevo.placa = copiaPlaca;
-            
+            vehiculo nuevo = new vehiculo(copiaPlaca, copiaMaletas, copiaAño, copiaPuertas, copiaMPG, copiaCosto, copiaVIN, copiaKilometraje, copiaCantidad, copiaTransmision, foto, copiaColor, copiaMarca, copiaEstado, copiaEstilo, copiaSede);
+            PrograBases1.vehiculos.create(nuevo);
             
             
         }
+        catch(HeadlessException e){
+               JOptionPane.showMessageDialog(null,"No se ha podido ingresar el cliente","Error", JOptionPane.PLAIN_MESSAGE);
+               
+           }     
     }
+    
 }
