@@ -90,7 +90,7 @@ public class Menú extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setText("Desloguaer");
+        jButton9.setText("Desloguear");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -15,6 +15,7 @@ import Estructuras.nodoClientes;
 import java.util.LinkedList;
 import prograbases1.cliente;
 import prograbases1.empresa;
+import prograbases1.licencia;
 import prograbases1.servicioMantenimiento;
 import prograbases1.usuario;
 import prograbases1.vehiculo;
@@ -25,6 +26,7 @@ public class PrograBases1 {
     public static linkedListG<cliente> clientes = new linkedListG<cliente>();
     public static linkedListG<empresa> empresas = new linkedListG<empresa>();
     public static linkedListG<servicioMantenimiento> serviciosM = new linkedListG<servicioMantenimiento>();
+    public static linkedListG<licencia> licencias = new linkedListG<licencia>();
     public static linkedListG reservas = new linkedListG<>();
     
     public static void main(String[] args) {

@@ -5,12 +5,17 @@
  */
 package interfaz;
 
+import Estructuras.linkedListG;
 import Gestion.gestionServMant;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import prograbases1.vehiculo;
 
 /**
  *
@@ -23,6 +28,38 @@ public class interfazServMant extends javax.swing.JFrame {
      */
     public interfazServMant() {
         initComponents();
+        cargarJList();
+        cargarJList2();
+    }
+    private void cargarJList(){
+        
+        DefaultListModel listModel = new DefaultListModel();
+        
+        PrograBases1.vehiculos.getHead();
+        PrograBases1.vehiculos.current = PrograBases1.vehiculos.current.getNextNode();
+        
+        while(PrograBases1.vehiculos.current != null){
+            //Busca el vehiculo
+            listModel.addElement(PrograBases1.vehiculos.current.getElement().placa);
+            
+            PrograBases1.vehiculos.current = PrograBases1.vehiculos.current.getNextNode();
+        }
+        listaPlacas.setModel(listModel);
+    }
+    private void cargarJList2(){
+        
+        DefaultListModel listModel = new DefaultListModel();
+        
+        PrograBases1.empresas.getHead();
+        PrograBases1.empresas.current = PrograBases1.empresas.current.getNextNode();
+        
+        while(PrograBases1.empresas.current != null){
+            //Busca el vehiculo
+            listModel.addElement(PrograBases1.empresas.current.getElement().cedulaJuridica);
+            
+            PrograBases1.empresas.current = PrograBases1.empresas.current.getNextNode();
+        }
+        listaCedulasJ.setModel(listModel);
     }
 
     /**

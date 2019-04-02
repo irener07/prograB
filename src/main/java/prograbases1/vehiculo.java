@@ -22,7 +22,7 @@ public class vehiculo {
     public File foto;
     public int idColor;
     public int idMarca;
-    public int isEstado;
+    public int idEstado;
     public int idEstilo;
     public int idSede;
 
@@ -40,7 +40,7 @@ public class vehiculo {
         this.foto = foto;
         this.idColor = idColor;
         this.idMarca = idMarca;
-        this.isEstado = isEstado;
+        this.idEstado = isEstado;
         this.idEstilo = idEstilo;
         this.idSede = idSede;
     }
@@ -151,12 +151,12 @@ public class vehiculo {
         this.idMarca = idMarca;
     }
 
-    public int getIsEstado() {
-        return isEstado;
+    public int getIdEstado() {
+        return idEstado;
     }
 
-    public void setIsEstado(int isEstado) {
-        this.isEstado = isEstado;
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
     }
 
     public int getIdEstilo() {
@@ -177,7 +177,7 @@ public class vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "placa=" + placa + ", cantidadMaletas=" + cantidadMaletas + ", a\u00f1o=" + año + ", numeroPuertas=" + numeroPuertas + ", mpg=" + mpg + ", costoDia=" + costoDia + ", numeroVin=" + numeroVin + ", kilometraje=" + kilometraje + ", cantidadPersonas=" + cantidadPersonas + ", idTransmision=" + idTransmision + ", foto=" + foto + ", idColor=" + idColor + ", idMarca=" + idMarca + ", isEstado=" + isEstado + ", idEstilo=" + idEstilo + ", idSede=" + idSede + '}';
+        return "Vehiculo{" + "placa=" + placa + ", cantidadMaletas=" + cantidadMaletas + ", a\u00f1o=" + año + ", numeroPuertas=" + numeroPuertas + ", mpg=" + mpg + ", costoDia=" + costoDia + ", numeroVin=" + numeroVin + ", kilometraje=" + kilometraje + ", cantidadPersonas=" + cantidadPersonas + ", idTransmision=" + idTransmision + ", foto=" + foto + ", idColor=" + idColor + ", idMarca=" + idMarca + ", isEstado=" + idEstado + ", idEstilo=" + idEstilo + ", idSede=" + idSede + '}';
     }
     
     

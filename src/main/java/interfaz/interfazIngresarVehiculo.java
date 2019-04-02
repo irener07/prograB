@@ -338,17 +338,16 @@ public class interfazIngresarVehiculo extends javax.swing.JFrame {
             int copiaTransmision = Integer.parseInt(interfazIngresarVehiculo.entradaTransmision.getSelectedItem().toString());
             int copiaMarca = Integer.parseInt(interfazIngresarVehiculo.entradaMarca.getSelectedItem().toString());
             int copiaColor = Integer.parseInt(interfazIngresarVehiculo.entradaColor.getSelectedItem().toString());
-            int copiaCapacidad = Integer.parseInt(interfazIngresarVehiculo.entradaCapacidad.getText());
+            int copiaCantidad = Integer.parseInt(interfazIngresarVehiculo.entradaCapacidad.getText());
             int copiaMaletas = Integer.parseInt(interfazIngresarVehiculo.entradaMaletas.getText());
             int copiaSede = Integer.parseInt(interfazIngresarVehiculo.entradaSede.getSelectedItem().toString());
             File copiaFoto = fotito;
-            gestion.ingresarVehiculo(copiaPlaca, copiaMaletas, copiaAño, copiaPuertas, copiaMPG, copiaCosto, copiaVIN, copiaKilometraje, copiaPuertas, copiaTransmision, copiaFoto, copiaColor, copiaMarca, copiaEstado, copiaEstilo, copiaSede);
+            gestion.ingresarVehiculo(copiaPlaca, copiaMaletas, copiaAño, copiaPuertas, copiaMPG, copiaCosto, copiaVIN, copiaKilometraje, copiaCantidad, copiaTransmision, copiaFoto, copiaColor, copiaMarca, copiaEstado, copiaEstilo, copiaSede);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarFotoActionPerformed
         // TODO add your handling code here:
         int resultado;
-        cargarImagen buscador = new cargarImagen();
         //Filtros
         FileNameExtensionFilter formato = new FileNameExtensionFilter("Images","jpn","png","gif","bmp");
         cargarImagen.jFileChooser3.setFileFilter(formato);
