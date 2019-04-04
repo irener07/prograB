@@ -6,6 +6,7 @@
 package prograbases1;
 
 import java.awt.Image;
+import java.io.File;
 import java.sql.Date;
 
 /**
@@ -17,10 +18,10 @@ public class licencia {
     public String tipoLicencia;
     public Date fechaEmision;
     public Date fechaExpiracion;
-    public Image foto;
+    public File foto;
     public int cedulaCliente;
 
-    public licencia(int numeroLicencia, String tipoLicencia, Date fechaEmision, Date fechaExpiracion, Image foto, int cedulaCliente) {
+    public licencia(int numeroLicencia, String tipoLicencia, Date fechaEmision, Date fechaExpiracion, File foto, int cedulaCliente) {
         this.numeroLicencia = numeroLicencia;
         this.tipoLicencia = tipoLicencia;
         this.fechaEmision = fechaEmision;
@@ -61,11 +62,11 @@ public class licencia {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public Image getFoto() {
+    public File getFoto() {
         return foto;
     }
 
-    public void setFoto(Image foto) {
+    public void setFoto(File foto) {
         this.foto = foto;
     }
 

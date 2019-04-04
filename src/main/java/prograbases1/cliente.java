@@ -16,8 +16,9 @@ public class cliente {
     public int idCanton;
     public int idDistrito;
     public String señas;
+    public int idLicencia;
 
-    public cliente(int cedula, String primerNombre, String primerApellido, String segundoApellido, String correo, int telefono, int idProvincia, int idCanton, int idDistrito, String señas) {
+    public cliente(int cedula, String primerNombre, String primerApellido, String segundoApellido, String correo, int telefono, int idProvincia, int idCanton, int idDistrito, String señas, int idLicencia) {
         this.cedula = cedula;
         this.primerNombre = primerNombre;
         this.primerApellido = primerApellido;
@@ -28,6 +29,7 @@ public class cliente {
         this.idCanton = idCanton;
         this.idDistrito = idDistrito;
         this.señas = señas;
+        this.idLicencia = idLicencia;
     }
 
     public int getCedula() {
@@ -110,9 +112,20 @@ public class cliente {
         this.señas = señas;
     }
 
+    public int getIdLicencia() {
+        return idLicencia;
+    }
+
+    public void setIdLicencia(int idLicencia) {
+        this.idLicencia = idLicencia;
+    }
+
     @Override
     public String toString() {
-        return "cliente{" + "cedula=" + cedula + ", primerNombre=" + primerNombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", correo=" + correo + ", telefono=" + telefono + ", idProvincia=" + idProvincia + ", idCanton=" + idCanton + ", idDistrito=" + idDistrito + ", se\u00f1as=" + señas + '}';
+        return "cliente{" + "cedula=" + cedula + ", primerNombre=" + primerNombre + ", primerApellido=" + primerApellido + ", segundoApellido=" + segundoApellido + ", correo=" + correo + ", telefono=" + telefono + ", idProvincia=" + idProvincia + ", idCanton=" + idCanton + ", idDistrito=" + idDistrito + ", se\u00f1as=" + señas + ", idLicencia=" + idLicencia + '}';
     }
+    
+
+    
     
 }

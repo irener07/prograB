@@ -26,12 +26,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class interfazIngresarVehiculo extends javax.swing.JFrame {
     static File fotito;
     String filename = null;
-
-    /**
-     * Creates new form interfazVehiculo
-     */
     static ResultSet res;
-    int cont;  
+    int cont; 
+    
     public interfazIngresarVehiculo() {
         initComponents();
     }

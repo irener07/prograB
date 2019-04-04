@@ -70,4 +70,15 @@ public class Procedimientos {
        vehiculo.setString(16, p);
        vehiculo.execute();
     }
+    
+    public static void ingresoLicencia(String a,String b,String c,String d,String e,String f)throws SQLException{
+        CallableStatement licencia = Conexion.getConexion().prepareCall("{call ingresarLicencia(?,?,?,?,?,?)}");
+        licencia.setString(1, a);
+        licencia.setString(2, b);
+        licencia.setString(3, c);
+        licencia.setString(4, d);
+        licencia.setString(5, e);
+        licencia.setString(6, f);
+        licencia.execute();
+    }
 }
